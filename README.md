@@ -1,70 +1,105 @@
 
 
 #include iostream
+
 #include iomanip
 
 using namespace std;
 
 //structure definitions
+
 struct PatientVitalInfo
+
 {
+
 	float temperature;
+	
 	unsigned int systolicPressure;
+	
 	unsigned int diastolicPressure;
 };
 
 struct PatientActivityInfo
+
 {
+
 	unsigned int stepCount;
+	
 	unsigned int sleepHours;
 };
 
 union InformationType
+
 {
 
 	//v and a are to allow access to nested structures vitals and activity
 	PatientVitalInfo v;
 	PatientActivityInfo a;
 };
+
 enum type { VITALS, ACTIVITY };
 
 struct StoreUnion
+
 {
+
 	InformationType patientinfo;
+	
 	type datatype;
 };
+
 //structures for later functions to return more than one value (calculated max and minimums and totals)
+
 struct maxMinTemp
 {
+
+
 	float maxTemp;
+	
 	float minTemp;
 };
+
 struct maxMinSystolic
 {
+
 	unsigned int maxSystolic;
+	
 	unsigned int minSystolic;
 };
+
 struct maxMinDiastolic
 {
+
 	unsigned int maxDiastolic;
+	
 	unsigned int minDiastolic;
 };
 
 struct ActivityTotals
 {
+
 	unsigned int totalstep;
+	
 	unsigned int totalsleep;
 
 };
 
 //function prototypes
+
 void patientVitals(StoreUnion[], int);
+
 void patientActivity(StoreUnion[], int);
+
 void printVitalInfo(maxMinTemp, maxMinSystolic, maxMinDiastolic, int);
+
 void printActivityInfo(ActivityTotals, int);
+
 maxMinTemp functiontemp(StoreUnion[], int);
+
 maxMinSystolic functionsystolic(StoreUnion[], int);
+
 maxMinDiastolic functiondiastolic(StoreUnion[], int);
+
 ActivityTotals functionactivity(StoreUnion[], int);
 
 
